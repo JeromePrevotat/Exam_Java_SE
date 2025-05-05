@@ -1,6 +1,7 @@
 package services;
 
 import interfaces.AuthentificationService;
+import java.util.List;
 import java.util.Scanner;
 import model.Utilisateur;
 
@@ -21,7 +22,7 @@ public class Authentification implements AuthentificationService{
     public String askPassword() {
         String password = null;
         while (password == null || password.trim().equals("")){
-            System.out.println("Definissez un mot de passe: ");
+            System.out.println("Entrer votre mot de passe: ");
             password = this.scan.next().trim();
         }
         return password;
@@ -59,24 +60,35 @@ public class Authentification implements AuthentificationService{
     }
 
     @Override
-    public boolean validate(Utilisateur u) {
+    public boolean validate(List<Utilisateur> users) {
         int attempts = 0;
+        String email = askEmail();
+        String password = askPassword();
 
         System.out.println("=== Electricity Buisiness ===");
-        System.out.print("Veuillez entrer votre code de confirmation: ");
-        while (attempts < MAX_ATTEMPS){
-            if (this.scan.next().trim().equals(u.getCodeValidation())){
-                u.setEstValide(true);
-                return true;
+        for (Utilisateur u : users){
+            if (email.equals(u.getEmail()) && password.equals(u.getMotDePasse())){
+                while (attempts < MAX_ATTEMPS){
+                    System.out.print("Veuillez entrer votre code de confirmation: ");
+                    if (this.scan.next().trim().equals(u.getCodeValidation())){
+                        u.setEstValide(true);
+                        return true;
+                    }
+                    else System.out.println("Code Invalide. " + (MAX_ATTEMPS - 1 - attempts) + " Tentatives restantes.");
+                    attempts++;
+                }
             }
-            else System.out.println("Code Invalide. " + (MAX_ATTEMPS - attempts) + " Tentatives restantes.");
-            attempts++;
         }
         return false;
     }
 
     @Override
-    public boolean connexion() {
+    public boolean connexion(List<Utilisateur> users) {
+        String email = askEmail();
+        String password = askPassword();
+        for (Utilisateur u : users){
+            if (email.equals(u.getEmail()) && password.equals(u.getMotDePasse())) return true;
+        }
         return false;
     }
 

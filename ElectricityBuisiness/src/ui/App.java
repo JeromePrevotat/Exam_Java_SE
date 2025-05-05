@@ -6,6 +6,7 @@ import model.LieuRecharge;
 import model.Reservation;
 import model.Utilisateur;
 import services.Authentification;
+import services.Users;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -16,6 +17,8 @@ public class App {
 
     private static void run(){
         Menu menu = new Menu();
+        Users users = new Users();
+        System.out.println(users.getUsers());
         Authentification auth = new Authentification();
         int choice;
         String userInput;
@@ -31,10 +34,21 @@ public class App {
                 switch (choice) {
                     case 1:
                         Utilisateur u = auth.register();
-                        System.out.println(u.toString());                    
+                        if (u != null){
+                            users.getUsers().add(u);
+                            System.out.println("Inscription Terminée. Retour au Menu principal\n");
+                        }
+                        else System.out.println("Une Erreur est survenue... Retour au Menu Principal\n");
+                        menu.displayMenu(0);
                         break;
                     case 2:
-
+                        auth.validate(users.getUsers());
+                        menu.displayMenu(0);
+                        break;
+                    case 3:
+                        if(auth.connexion(users.getUsers())) System.out.println("Vous êtes connecté. Retour au Menu principal\n");
+                        else System.out.println("Identifiants incorrects... Retour au Menu Principal\n");
+                        menu.displayMenu(0);
                         break;
                     default:
                         throw new AssertionError();
