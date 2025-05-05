@@ -88,7 +88,4 @@ public class Administration implements AdministrationService{
         }
         return lieu.getBornes().add(new BorneRecharge(tarifHoraire));
     }
-
-    
-
 }

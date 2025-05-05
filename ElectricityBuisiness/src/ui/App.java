@@ -11,9 +11,9 @@ import services.Users;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        tests();
+        // tests();
 
-        // run();
+        run();
     }
 
     private static void run(){
@@ -55,17 +55,20 @@ public class App {
                     case 4:
                         // Si user logged
                         menu.displayMenu(0);
+                        System.out.println("WIP\n");
                         break;
-                    case 5:
+                        case 5:
                         // Si user logged
-                            // Sous Menu seeAllReservation, seePastReservation, seeFutureReservation,
-                            //seeWaitingReservation, seeRefusedReservation, seeAcceptedReservation
+                        // Sous Menu seeAllReservation, seePastReservation, seeFutureReservation,
+                        //seeWaitingReservation, seeRefusedReservation, seeAcceptedReservation
                         menu.displayMenu(0);
+                        System.out.println("WIP\n");
                         break;
-                    case 6:
+                        case 6:
                         // Si user logged
-                            // Sous Menu addLieu, addBorne, delLieu, delBorne, changeReservationStatut
+                        // Sous Menu addLieu, addBorne, delLieu, delBorne, changeReservationStatut
                         menu.displayMenu(0);
+                        System.out.println("WIP\n");
                         break;
                     case 0:
                         menu.setExit(true);
