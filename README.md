@@ -2,6 +2,12 @@
 
 ## Main is located at src/ui/App.java
 
+# run() is working for steps 1 to 4
+
+# use test() to test Administration Implementation
+
+# Bornes service is implemented but not tested yet
+
 # Implemented:
 
 0. Quitter
@@ -21,9 +27,3 @@
 
 4. réserver une borne
 5. Gérer mes réservations
-
-# run() is working for steps 1 to 4
-
-# use test() to test Administration Implementation
-
-# Bornes service is implemented but not tested yet
