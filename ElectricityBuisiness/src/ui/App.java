@@ -5,21 +5,23 @@ import java.util.List;
 import java.util.Scanner;
 import model.LieuRecharge;
 import model.Utilisateur;
+import services.Administration;
 import services.Authentification;
 import services.Users;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        // tests();
+        tests();
 
-        run();
+        // run();
     }
 
     private static void run(){
         Menu menu = new Menu();
         Users users = new Users();
-        System.out.println(users.getUsers());
+        List<LieuRecharge> lieux = new ArrayList<>();
         Authentification auth = new Authentification();
+        Administration admin = new Administration(lieux);
         int choice;
         String userInput;
 
@@ -51,6 +53,18 @@ public class App {
                         menu.displayMenu(0);
                         break;
                     case 4:
+                        // Si user logged
+                        menu.displayMenu(0);
+                        break;
+                    case 5:
+                        // Si user logged
+                            // Sous Menu seeAllReservation, seePastReservation, seeFutureReservation,
+                            //seeWaitingReservation, seeRefusedReservation, seeAcceptedReservation
+                        menu.displayMenu(0);
+                        break;
+                    case 6:
+                        // Si user logged
+                            // Sous Menu addLieu, addBorne, delLieu, delBorne, changeReservationStatut
                         menu.displayMenu(0);
                         break;
                     case 0:
@@ -62,23 +76,25 @@ public class App {
             }
         } catch (NumberFormatException e) {
             System.err.println("Choix Invalide\n");
+        } finally {
+            auth.getScan().close();
         }
     }
 
     private static void tests(){
         List<LieuRecharge> lieux = new ArrayList<>();
-        Utilisateur u = new Utilisateur();
+        Administration admin = new Administration(lieux);
+        Utilisateur u0 = new Utilisateur("user0Name", "user0Mail", "user0Pwd", "0000");
+        Utilisateur u1 = new Utilisateur("user1Name", "user1Mail", "user1Pwd", "1111");
         // Creation d'un nouveau lieu de recharge
-        lieux.add(u.addNewLieu());
+        admin.addNewLieu();
         // Verif
         for (LieuRecharge l : lieux){
             System.out.println("LIEUX:\n");
             System.out.println(l.toString());
         }
         // Si la liste de lieux n'est pas vide on ajoute une borne a la liste du premier lieu
-        if (!lieux.isEmpty()){
-            lieux.getFirst().getBornes().add(u.addNewBorne());
-        }
+        if (!lieux.isEmpty()) admin.addNewBorne();
         // Verif
         System.out.println("BORNE:\n");
         System.out.println(lieux.getFirst().getBornes().stream().toString());

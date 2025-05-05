@@ -85,16 +85,14 @@ public class Menu {
     private String initInscription(){
         StringBuilder sb = new StringBuilder();
         sb.append("=== Electricity Business ===").append("\n")
-            .append("=== Formulaire d'inscription ===").append("\n")
-            .append("0. Pour Annuler et retourner au Menu Principal").append("\n");
+            .append("=== Formulaire d'inscription ===").append("\n");
         return sb.toString();
     }
 
     private static String initValidation(){
         StringBuilder sb = new StringBuilder();
         sb.append("=== Electricity Business ===").append("\n")
-            .append("=== Validation d'inscription ===").append("\n")
-            .append("0. Pour Annuler et retourner au Menu Principal").append("\n");
+            .append("=== Validation d'inscription ===").append("\n");
         return sb.toString();
     }
     
@@ -102,32 +100,28 @@ public class Menu {
         StringBuilder sb = new StringBuilder();
         sb.append("=== Electricity Business ===").append("\n")
             .append("=== Connexion ===").append("\n")
-            .append("Veuillez entrer vos Identifiants").append("\n")
-            .append("0. Pour Annuler et retourner au Menu Principal").append("\n");
+            .append("Veuillez entrer vos Identifiants").append("\n");
         return sb.toString();
     }
     
     private static String initChercher(){
         StringBuilder sb = new StringBuilder();
         sb.append("=== Electricity Business ===").append("\n")
-            .append("=== Recherche & Reservation ===").append("\n")
-            .append("0. Pour Annuler et retourner au Menu Principal").append("\n");
+            .append("=== Recherche & Reservation ===").append("\n");
         return sb.toString();
     }
     
     private static String initGerer(){
         StringBuilder sb = new StringBuilder();
         sb.append("=== Electricity Business ===").append("\n")
-            .append("=== Gestion des Reservations ===").append("\n")
-            .append("0. Pour Annuler et retourner au Menu Principal").append("\n");
+            .append("=== Gestion des Reservations ===").append("\n");
         return sb.toString();
     }
     
     private static String initAdministrer(){
         StringBuilder sb = new StringBuilder();
         sb.append("=== Electricity Business ===").append("\n")
-            .append("=== Administration des Lieux et Bornes ===").append("\n")
-            .append("0. Pour Annuler et retourner au Menu Principal").append("\n");
+            .append("=== Administration des Lieux et Bornes ===").append("\n");
         return sb.toString();
     }
 

@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Utilisateur {
@@ -87,51 +85,14 @@ public class Utilisateur {
     }
 
     // METHODS
-    public LieuRecharge addNewLieu(){
-        String nom = null;
-        String adresse = null;
-        List<BorneRecharge> listBornes = new ArrayList<>();
-        while (nom == null || nom.trim().equals("")){
-            System.out.println("Entrer un nom pour le Lieu: ");
-            nom = this.scan.next().trim();
-        }
-        while (adresse == null || adresse.trim().equals("")){
-            System.out.println("Entrer l'Adresse du Lieu: ");
-            adresse = this.scan.next().trim();
-        }
-        return new LieuRecharge(nom, adresse, listBornes);
-    }
-
-    public BorneRecharge addNewBorne(){
-        String input = "";
-        double tarifHoraire = 0;
-        while (input.trim().equals("") || tarifHoraire <= 0){
-            System.out.println("Entrer le tarif de la Borne: ");
-            input = this.scan.next().trim();
-            try {
-                tarifHoraire = Double.valueOf(input);   
-            } catch (NumberFormatException e) {
-                System.err.println(e.getMessage());
-            }
-        }
-        return new BorneRecharge(tarifHoraire);
-    }
+    
 
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("=== Utilisateur ").append(this.id).append(" ===").append("\n")
             .append("Username: ").append(this.username).append("\n")
-            .append("Email: ").append(this.email).append("\n")
-            /*********
-             * DEBUG *
-            **********/
-            .append("PWD: ").append(this.motDePasse).append("\n")
-            .append("CODE: ").append(this.codeValidation).append("\n")
-            .append("VALID: ").append(this.estValide).append("\n");
-            /*********
-             * DEBUG *
-            **********/
+            .append("Email: ").append(this.email).append("\n");
         return sb.toString();
     }    
 }

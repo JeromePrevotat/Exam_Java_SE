@@ -19,6 +19,10 @@ public class Authentification implements AuthentificationService{
         return new Utilisateur(username, email, password, code);
     }
 
+    public Scanner getScan() {
+        return this.scan;
+    }
+
     public String askPassword() {
         String password = null;
         while (password == null || password.trim().equals("")){
