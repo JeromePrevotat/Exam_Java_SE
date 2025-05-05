@@ -8,6 +8,7 @@ public class Utilisateur {
     private String motDePasse;
     private String codeValidation;
     private boolean estValide;
+    private boolean isLogged;
 
     public Utilisateur() { idTotal++; }
     
@@ -18,6 +19,7 @@ public class Utilisateur {
         this.motDePasse = motDePasse;
         this.codeValidation = codeValidation;
         this.estValide = false;
+        this.isLogged = false;
         idTotal++;
     }
 
@@ -46,6 +48,10 @@ public class Utilisateur {
         return this.estValide;
     }
 
+    public boolean isLogged() {
+        return this.isLogged;
+    }
+
     // SETTER
     public void setId(int id) {
         this.id = id;
@@ -69,6 +75,10 @@ public class Utilisateur {
 
     public void setEstValide(boolean estValide) {
         this.estValide = estValide;
+    }
+
+    public void setLogged(boolean isLogged) {
+        this.isLogged = isLogged;
     }
 
     // METHODS

@@ -9,5 +9,5 @@ public interface AuthentificationService {
     public String sendCode(String code);
     public boolean validate(List<Utilisateur> users);
     public boolean connexion(List<Utilisateur> users);
-    public boolean deconnexion();
+    public boolean deconnexion(Utilisateur u);
 }

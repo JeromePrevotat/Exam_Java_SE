@@ -87,13 +87,20 @@ public class Authentification implements AuthentificationService{
         String email = askEmail();
         String password = askPassword();
         for (Utilisateur u : users){
-            if (email.equals(u.getEmail()) && password.equals(u.getMotDePasse())) return true;
+            if (email.equals(u.getEmail()) && password.equals(u.getMotDePasse())){
+                u.setLogged(true);
+                return u.isLogged();
+            }
         }
         return false;
     }
 
     @Override
-    public boolean deconnexion() {
+    public boolean deconnexion(Utilisateur u) {
+        if (u.isLogged()){
+            u.setLogged(false);
+            return true;
+        }
         return false;
     }
 
