@@ -9,7 +9,7 @@ import model.EtatBorne;
 import model.LieuRecharge;
 
 public class Bornes implements BorneService{
-    private static List<LieuRecharge> lieux = new ArrayList<>();
+    private List<LieuRecharge> lieux = new ArrayList<>();
 
     public Bornes(List<LieuRecharge> lieux) {
         this.lieux = lieux;
@@ -74,7 +74,7 @@ public class Bornes implements BorneService{
      * Method that returns every available Borne in any Lieux whith a given Name
      */
     @Override
-    public List<BorneRecharge> getExactAdresse(String nom) {
+    public List<BorneRecharge> getExactName(String nom) {
         List<BorneRecharge> results = new ArrayList<>();
         for (LieuRecharge l : this.lieux){
             if (l.getNom().equals(nom)){

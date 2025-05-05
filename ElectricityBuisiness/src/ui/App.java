@@ -10,9 +10,9 @@ import services.Users;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        tests();
+        // tests();
 
-        // run();
+        run();
     }
 
     private static void run(){
@@ -52,6 +52,9 @@ public class App {
                         break;
                     case 4:
                         menu.displayMenu(0);
+                        break;
+                    case 0:
+                        menu.setExit(true);
                         break;
                     default:
                         throw new AssertionError();
