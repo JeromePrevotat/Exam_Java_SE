@@ -1,6 +1,7 @@
 package model;
 
 public class Utilisateur {
+    private static int idTotal = 0;
     private int id;
     private String username;
     private String email;
@@ -8,15 +9,16 @@ public class Utilisateur {
     private String codeValidation;
     private boolean estValide;
 
-    public Utilisateur() {}
+    public Utilisateur() { idTotal++; }
     
-    public Utilisateur(int id, String username, String email, String motDePasse, String codeValidation, boolean estValide){
-        this.id = id;
+    public Utilisateur(String username, String email, String motDePasse, String codeValidation){
+        this.id = idTotal;
         this.username = username;
         this.email = email;
         this.motDePasse = motDePasse;
         this.codeValidation = codeValidation;
-        this.estValide = estValide;
+        this.estValide = false;
+        idTotal++;
     }
 
     // GETTER
