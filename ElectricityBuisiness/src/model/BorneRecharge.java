@@ -1,16 +1,18 @@
 package model;
 
 public class BorneRecharge {
+    private static int idTotal = 0;
     private int id;
     private EtatBorne etat;
     private double tarifHoraire;
 
-    public BorneRecharge() {}
+    public BorneRecharge() { idTotal++; }
 
-    public BorneRecharge(int id, EtatBorne etat, double tarifHoraire){
-        this.id = id;
-        this.etat = etat;
+    public BorneRecharge(double tarifHoraire){
+        this.id = idTotal;
+        this.etat = EtatBorne.DISPONIBLE;
         this.tarifHoraire = tarifHoraire;
+        idTotal++;
     }
 
     // GETTER

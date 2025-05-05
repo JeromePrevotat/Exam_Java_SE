@@ -1,18 +1,18 @@
 package ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import model.BorneRecharge;
 import model.LieuRecharge;
-import model.Reservation;
 import model.Utilisateur;
 import services.Authentification;
 import services.Users;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        // tests();
+        tests();
 
-        run();
+        // run();
     }
 
     private static void run(){
@@ -50,6 +50,9 @@ public class App {
                         else System.out.println("Identifiants incorrects... Retour au Menu Principal\n");
                         menu.displayMenu(0);
                         break;
+                    case 4:
+                        menu.displayMenu(0);
+                        break;
                     default:
                         throw new AssertionError();
                 }
@@ -60,18 +63,21 @@ public class App {
     }
 
     private static void tests(){
-        Utilisateur u0 = new Utilisateur();
-        BorneRecharge b0 = new BorneRecharge();
-        LieuRecharge l0 = new LieuRecharge();
-        Reservation r0 = new Reservation();
-
-        
-        System.out.println("\n" + u0.toString());
-        System.out.println("\n" + b0.toString());
-        System.out.println("\n" + l0.toString());
-        System.out.println("\n" + r0.toString());
-
-        Menu menu = new Menu();
-        menu.displayMenu(0);
+        List<LieuRecharge> lieux = new ArrayList<>();
+        Utilisateur u = new Utilisateur();
+        // Creation d'un nouveau lieu de recharge
+        lieux.add(u.addNewLieu());
+        // Verif
+        for (LieuRecharge l : lieux){
+            System.out.println("LIEUX:\n");
+            System.out.println(l.toString());
+        }
+        // Si la liste de lieux n'est pas vide on ajoute une borne a la liste du premier lieu
+        if (!lieux.isEmpty()){
+            lieux.getFirst().getBornes().add(u.addNewBorne());
+        }
+        // Verif
+        System.out.println("BORNE:\n");
+        System.out.println(lieux.getFirst().getBornes().stream().toString());
     }
 }

@@ -3,19 +3,21 @@ package model;
 import java.util.List;
 
 public class LieuRecharge {
+    private static int idTotal = 0;
     private int id;
     private String nom;
     private String adresse; //Class ?
     private List<BorneRecharge> bornes;
 
 
-    public LieuRecharge() {}
+    public LieuRecharge() { idTotal++; }
 
-    public LieuRecharge(int id, String nom, String adresse, List<BorneRecharge> bornes){
-        this.id = id;
+    public LieuRecharge(String nom, String adresse, List<BorneRecharge> bornes){
+        this.id = idTotal;
         this.nom = nom;
         this.adresse = adresse;
         this.bornes = bornes;
+        idTotal++;
     }
 
     // GETTER
