@@ -87,25 +87,26 @@ public class Authentification implements AuthentificationService{
     }
 
     @Override
-    public boolean connexion(List<Utilisateur> users) {
+    public Utilisateur connexion(List<Utilisateur> users) {
         String email = askEmail();
         String password = askPassword();
+        System.out.println("Veuillez entrer vos Identifiants\n");
         for (Utilisateur u : users){
             if (email.equals(u.getEmail()) && password.equals(u.getMotDePasse())){
                 u.setLogged(true);
-                return u.isLogged();
+                return u;
             }
         }
-        return false;
+        return null;
     }
 
     @Override
-    public boolean deconnexion(Utilisateur u) {
+    public Utilisateur deconnexion(Utilisateur u) {
         if (u.isLogged()){
             u.setLogged(false);
-            return true;
+            return null;
         }
-        return false;
+        return null;
     }
 
     @Override

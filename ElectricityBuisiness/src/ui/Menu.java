@@ -99,8 +99,7 @@ public class Menu {
     private static String initConnexion(){
         StringBuilder sb = new StringBuilder();
         sb.append("=== Electricity Business ===").append("\n")
-            .append("=== Connexion ===").append("\n")
-            .append("Veuillez entrer vos Identifiants").append("\n");
+            .append("=== Connexion ===").append("\n");
         return sb.toString();
     }
     

@@ -7,6 +7,7 @@ import model.LieuRecharge;
 import model.Utilisateur;
 import services.Administration;
 import services.Authentification;
+import services.Bornes;
 import services.Users;
 
 public class App {
@@ -21,7 +22,9 @@ public class App {
         Users users = new Users();
         List<LieuRecharge> lieux = new ArrayList<>();
         Authentification auth = new Authentification();
+        Bornes bornes = new Bornes(lieux);
         Administration admin = new Administration(lieux);
+        Utilisateur currentlyLogged = null;
         int choice;
         String userInput;
 
@@ -29,6 +32,7 @@ public class App {
             menu.displayMenu(0);
             while (!menu.isExit()) {
                 // L'utilisateur fait un choix
+                System.out.print("Votre choix: ");
                 userInput = scan.nextLine();
                 choice = Integer.parseInt(userInput.trim());
                 // Affichage du menu correspondant
@@ -44,16 +48,36 @@ public class App {
                         menu.displayMenu(0);
                         break;
                     case 2:
-                        auth.validate(users.getUsers());
+                        if (auth.validate(users.getUsers())) System.out.println("Votre compte est maintenant validé");;
                         menu.displayMenu(0);
                         break;
                     case 3:
-                        if(auth.connexion(users.getUsers())) System.out.println("Vous êtes connecté. Retour au Menu principal\n");
-                        else System.out.println("Identifiants incorrects... Retour au Menu Principal\n");
+                        // Utilisateur is logged : Disconnect
+                        if (currentlyLogged != null && currentlyLogged.isLogged()){
+                            currentlyLogged = auth.deconnexion(currentlyLogged);
+                            // Check
+                            if(currentlyLogged == null) System.out.println("Vous êtes déconnecté. Retour au Menu principal\n");
+                            else System.out.println("Something went wrong... Retour au Menu Principal\n");
+                        }
+                        // Utilisateur not logged : Connect
+                        else{
+                             currentlyLogged = auth.connexion(users.getUsers());
+                            // Check
+                            if(currentlyLogged != null) System.out.println("Vous êtes connecté. Retour au Menu principal\n");
+                            else System.out.println("Identifiants incorrects... Retour au Menu Principal\n");
+                        }
                         menu.displayMenu(0);
                         break;
                     case 4:
                         // Si user logged
+                        if (currentlyLogged != null && currentlyLogged.isLogged()){
+                            //  Get All Bornes
+                            // System.out.println("Get All Bornes");
+                            // List<BorneRecharge> results = bornes.getAll();
+                            // for (BorneRecharge b : results){
+                            //     System.out.println(b.toString());
+                            // }                            
+                        }
                         menu.displayMenu(0);
                         System.out.println("WIP\n");
                         break;
