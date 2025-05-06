@@ -94,5 +94,9 @@ public class Utilisateur {
             .append("Username: ").append(this.username).append("\n")
             .append("Email: ").append(this.email).append("\n");
         return sb.toString();
-    }    
+    }
+    
+    public void whoAmI(){
+        System.out.println(this.toString());
+    }
 }
